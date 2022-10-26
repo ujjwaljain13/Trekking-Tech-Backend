@@ -1,9 +1,9 @@
 const express = require("express");
 const fetchuser = require("./middleware/fetchuser");
-// const router = express.Router();
+const router = express.Router();
 const client = require("./db");
 
-app.post("/enrolled", fetchuser, async (req, res) => {
+router.post("/enrolled", fetchuser, async (req, res) => {
   try {
     const username = req.user_name;
     const { event_name } = req.body;
@@ -30,7 +30,7 @@ app.post("/enrolled", fetchuser, async (req, res) => {
   }
 });
 
-app.post("/revoke", fetchuser, async (req, res) => {
+router.post("/revoke", fetchuser, async (req, res) => {
   try {
     const username = req.user_name;
     const { event_name } = req.body;
@@ -55,4 +55,4 @@ app.post("/revoke", fetchuser, async (req, res) => {
 
 module.exports = client;
 
-// module.exports = router;
+module.exports = router;

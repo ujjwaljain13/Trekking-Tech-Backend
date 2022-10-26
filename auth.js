@@ -4,10 +4,10 @@ const fetchuser = require("./middleware/fetchuser");
 var bcrypt = require("bcrypt");
 var jwt = require("jsonwebtoken");
 const client = require("./db");
-// const router = express.router();
+const router = express.router();
 const JWT_SECRET = "adityaisagoodboy";
 
-app.post(
+router.post(
   "/signup",
   [
     body("username", "user name must be atleast 3 character").isLength({
@@ -53,7 +53,7 @@ app.post(
 );
 
 // Endpoint for login get request ROUTE 2
-app.post(
+router.post(
   "/login",
   [
     body("username", "Enter A username").isLength({ min: 3 }),
@@ -96,7 +96,7 @@ app.post(
   }
 );
 
-app.get("/alldata", fetchuser, async (req, res) => {
+router.get("/alldata", fetchuser, async (req, res) => {
   try {
     const username = req.user_name;
     const data = await client.query(
@@ -110,7 +110,7 @@ app.get("/alldata", fetchuser, async (req, res) => {
   }
 });
 
-app.post("/eventdata", async (req, res) => {
+router.post("/eventdata", async (req, res) => {
   try {
     const { eve_name } = req.body;
     // console.log(eve_name);
@@ -129,4 +129,4 @@ app.post("/eventdata", async (req, res) => {
 
 module.exports = client;
 
-// module.exports = router;
+module.exports = router;
