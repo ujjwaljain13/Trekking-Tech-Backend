@@ -28,8 +28,8 @@ app.use(
 app.get("/", (req, res) => {
   res.status(200);
 });
-app.use("https://trekking-tech.onrender.com/api/auth", auth);
-app.use("https://trekking-tech.onrender.com/api/events", events1);
+app.use("/auth", auth);
+app.use("/events", events1);
 // app.use("/api/events1", events1);
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
