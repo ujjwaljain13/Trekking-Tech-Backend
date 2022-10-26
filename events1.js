@@ -1,6 +1,6 @@
 const express = require("express");
 const fetchuser = require("./middleware/fetchuser");
-const router  = express.router();
+const router  = express.Router();
 const client = require("./db");
 
 router.post("/enrolled", fetchuser, async (req, res) => {

@@ -4,7 +4,7 @@ const fetchuser = require("./middleware/fetchuser");
 var bcrypt = require("bcrypt");
 var jwt = require("jsonwebtoken");
 const client = require("./db");
-const router = express.router();
+const router = express.Router();
 const JWT_SECRET = "adityaisagoodboy";
 
 router.post(
