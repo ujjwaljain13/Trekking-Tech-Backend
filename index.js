@@ -26,7 +26,10 @@ server.use(
   
 );
 server.get("/", (req, res) => {
-  res.status(200);
+  res.status(200).json({
+    message : "ok"
+  });
+
 });
 server.use("/api/auth", auth);
 server.use("/api/events", events1);
