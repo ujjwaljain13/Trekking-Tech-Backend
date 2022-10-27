@@ -1,4 +1,5 @@
+require('dotenv').config();
 const { Client } = require("pg");
-const client = new Client("postgres://ewqwnkze:4TEPuU0UqsE76NRFDxhc4zgew_U3G8Te@arjuna.db.elephantsql.com/ewqwnkze");
+const client = new Client(process.env.DB_SECRET);
 
 module.exports = client;

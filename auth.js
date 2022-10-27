@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const { body, validationResult } = require("express-validator");
 const fetchuser = require("./middleware/fetchuser");
@@ -5,7 +6,7 @@ var bcrypt = require("bcrypt");
 var jwt = require("jsonwebtoken");
 const client = require("./db");
 const router = express.Router();
-const JWT_SECRET = "adityaisagoodboy";
+// const JWT_SECRET = "himanshuisagoodboy";
 
 router.post(
   "/signup",
@@ -43,7 +44,7 @@ router.post(
         `insert into users values ('${username}' , '${email}' , '${secPass}'  , '{}' );`
       );
       const data1 = username;
-      const authtoken = jwt.sign(data1, JWT_SECRET);
+      const authtoken = jwt.sign(data1, process.env.JWT_SECRET);
       res.json({ authtoken: authtoken, value: 0 });
     } catch (error) {
       console.log(error.message);
@@ -86,7 +87,7 @@ router.post(
           .json({ message: "Enter Right credentials ", value: -2 });
       }
       const data1 = username;
-      const authtoken = await jwt.sign(data1, JWT_SECRET);
+      const authtoken = await jwt.sign(data1, process.env.JWT_SECRET);
       console.log("you logged in ...");
       res.status(200).json({ authtoken: authtoken, value: 0 });
     } catch (error) {
